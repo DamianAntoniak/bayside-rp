@@ -1,0 +1,18 @@
+command(launch, playerid, params[])
+{
+	#define SPEED (10.0)
+	#define Z_SPEED (4.0)
+	#define GRAVITY (13.0)
+        new modelid = 348; // Deagle Model ID
+	new Float:x, Float:y, Float:z, Float:ang;
+	GetPlayerPos(playerid, x, y, z);
+	GetPlayerFacingAngle(playerid, ang);
+	new obj = CreateObject(modelid, x, y - 0.5 * floatcos(-(ang + 90.0), degrees), z, 93.7, 120.0, ang + 60.0);
+ 	PHY_InitObject(obj);
+	PHY_MoveObject(obj, SPEED * floatsin(-ang, degrees), SPEED * floatcos(-ang, degrees), Z_SPEED);
+	PHY_SetObjectFriction(obj, 100); // This will stop the object when it touchs the ground.
+	PHY_SetObjectGravity(obj, GRAVITY);
+	PHY_SetObjectZBound(obj, z - 1.0, _, 0.0);
+	ApplyAnimation(playerid,"GRENADE","WEAPON_throwu",3.0,0,0,0,0,0);
+	return 1;
+}wu",3.0,0,0,0,0,0);
